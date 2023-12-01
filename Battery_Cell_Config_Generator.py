@@ -38,8 +38,8 @@ def save_to_excel(packs, pack_sums, pack_ocvs, pack_capacity, output_filename):
         df_output[f'Pack {i+1} Location'] = pd.Series(pack)
         df_output[f'Pack {i+1} OCV (V)'] = pd.Series(pack_ocvs[i])
         df_output[f'Pack {i+1} Capacity (mAh)'] = pd.Series(pack_capacity[i])
-        
-        #df_output.loc['Total Capacity'] = pack_sums
+    for i in range(len(packs)):
+        df_output.at['Total Capacity', f'Pack {i+1} Location'] = pack_sums[i]
         # Save the DataFrame to an Excel file
     df_output.to_excel(output_filename, index=False)
 
